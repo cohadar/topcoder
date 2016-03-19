@@ -1,0 +1,3 @@
+2016-03-19 | SRM-685
+	Wasted a ton of time on second problem because I did not do paper properly.
+	And got zero on both first and second problem, very nice start :) 

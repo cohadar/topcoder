@@ -23,9 +23,8 @@ public class Egalitarianism {
 		return D;
 	}
 
-	public static int maxDifference(String[] isFriend, int d) {
-		int n = isFriend.length;
-		int[][] D = distanceMatrix(n, isFriend);
+	public static void floydWarshall(int[][] D) {
+		int n = D.length;
 		for (int m = 0; m < n; m++) {
 			for (int a = 0; a < n; a++) {
 				for (int b = 0; b < n; b++) {
@@ -33,12 +32,23 @@ public class Egalitarianism {
 				}
 			}
 		}
-		int max = -INF;
-		for (int y = 0; y < n; y++) {
-			for (int x = 0; x < n; x++) {
+	}
+
+	public static int max(int[][] D) {
+		int max = D[0][0];
+		for (int y = 0; y < D.length; y++) {
+			for (int x = 0; x < D[y].length; x++) {
 				max = Math.max(max, D[y][x]);
 			}
 		}
+		return max;
+	}
+
+	public static int maxDifference(String[] isFriend, int d) {
+		int n = isFriend.length;
+		int[][] D = distanceMatrix(n, isFriend);
+		floydWarshall(D);
+		int max = max(D);
 		if (max == INF) {
 			return -1;
 		}

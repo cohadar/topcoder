@@ -19,23 +19,17 @@ public class DoubleWeights {
 		return D;
 	}
 
-	public static void floydWarshallSum(int n, int[][] S1, int[][] S2) {
-		for (int m = 0; m < n; m++) {
-			for (int a = 0; a < n; a++) {
-				for (int b = 0; b < n; b++) {
-					int temp = (S1[a][m] + S1[m][b]) * (S2[a][m] + S2[m][b]);
-					P[a][b] = Math.min(P[a][b], temp);    	
-				}
-			}
-		}
-	}
 
 	public static void floydWarshallMul(int n, int[][] P, int[][] S1, int[][] S2) {
 		for (int m = 0; m < n; m++) {
 			for (int a = 0; a < n; a++) {
 				for (int b = 0; b < n; b++) {
 					int temp = (S1[a][m] + S1[m][b]) * (S2[a][m] + S2[m][b]);
-					P[a][b] = Math.min(P[a][b], temp);    	
+					if (P[a][b] > temp) {
+						P[a][b] = temp;
+						S1[a][b] = S1[a][m] + S1[m][b];
+						S2[a][b] = S2[a][m] + S2[m][b];
+					}
 				}
 			}
 		}
